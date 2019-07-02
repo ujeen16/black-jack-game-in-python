@@ -1,0 +1,358 @@
+#Blackjack game by Eugene Ayotte on 5/10/19
+
+#random number to select card
+from random import randrange
+myrandom = randrange(0, 51)
+
+#define card class
+class card:
+
+    def __init__(self, type, suit, value):
+        self.type = type
+        self.suit = suit
+        self.value = value
+def blackjack():
+
+    cardlist=[]
+
+    cardlist.append(card(2,'Diamond',2))
+    cardlist.append(card(2,'Heart',2))
+    cardlist.append(card(2,'Club',2))
+    cardlist.append(card(2,'Spade',2))
+    cardlist.append(card(3,'Diamond',3))
+    cardlist.append(card(3,'Heart',3))
+    cardlist.append(card(3,'Club',3))
+    cardlist.append(card(3,'Spade',3))
+    cardlist.append(card(4,'Diamond',4))
+    cardlist.append(card(4,'Heart',4))
+    cardlist.append(card(4,'Club',4))
+    cardlist.append(card(4,'Spade',4))
+    cardlist.append(card(5,'Diamond',5))
+    cardlist.append(card(5,'Heart',5))
+    cardlist.append(card(5,'Club',5))
+    cardlist.append(card(5,'Spade',5))
+    cardlist.append(card(6,'Diamond',6))
+    cardlist.append(card(6,'Heart',6))
+    cardlist.append(card(6,'Club',6))
+    cardlist.append(card(6,'Spade',6))
+    cardlist.append(card(7,'Diamond',7))
+    cardlist.append(card(7,'Heart',7))
+    cardlist.append(card(7,'Club',7))
+    cardlist.append(card(7,'Spade',7))
+    cardlist.append(card(8,'Diamond',8))
+    cardlist.append(card(8,'Heart',8))
+    cardlist.append(card(8,'Club',8))
+    cardlist.append(card(8,'Spade',8))
+    cardlist.append(card(9,'Diamond',9))
+    cardlist.append(card(9,'Heart',9))
+    cardlist.append(card(9,'Club',9))
+    cardlist.append(card(9,'Spade',9))
+    cardlist.append(card(10,'Diamond',10))
+    cardlist.append(card(10,'Heart',10))
+    cardlist.append(card(10,'Club',10))
+    cardlist.append(card(10,'Spade',10))
+    cardlist.append(card('Jack','Diamond',10))
+    cardlist.append(card('Jack','Heart',10))
+    cardlist.append(card('Jack','Club',10))
+    cardlist.append(card('Jack','Spade',10))
+    cardlist.append(card('Queen','Diamond',10))
+    cardlist.append(card('Queen','Heart',10))
+    cardlist.append(card('Queen','Club',10))
+    cardlist.append(card('Queen','Spade',10))
+    cardlist.append(card('King','Diamond',10))
+    cardlist.append(card('King','Heart',10))
+    cardlist.append(card('King','Club',10))
+    cardlist.append(card('King','Spade',10))
+    cardlist.append(card('Ace','Diamond',11))
+    cardlist.append(card('Ace','Heart',11))
+    cardlist.append(card('Ace','Club',11))
+    cardlist.append(card('Ace','Spade',11))
+
+    print("hello, this is a game of blackjack with one player and one dealer")
+    print("on every hit a card is drawn, the player is allowed up to three hits")
+    print("the dealer must hit until they hit score at least 17")
+    print("the player begins with two cards and the dealer shows one of their cards")
+    print("whom ever is closer to 21 wins, however be careful if you go over 21 you lose")
+    print("best of luck")
+    print()
+    #Dealers first card
+    myrandom = randrange(0, 51)
+    mycard1 = cardlist[myrandom]
+    print("Dealer first card is ",mycard1.type,mycard1.suit,mycard1.value)
+    dealertotal= mycard1.value
+    print("dealer total points =",dealertotal)
+
+    #Players first hand
+    #first card
+    myrandom = randrange(0, 51)
+    mycard2 = cardlist[myrandom]
+    print("Your first card is", mycard2.type,mycard2.suit,mycard2.value)
+    #second card
+    myrandom = randrange(0, 51)
+    mycard3 = cardlist[myrandom]
+    print("your second card is", mycard3.type,mycard3.suit,mycard3.value)
+    #players total points
+    playertotal=mycard2.value+mycard3.value
+    print("your total points = ",playertotal)
+
+    #hit or no?
+    newhit= input("Do you want a hit? yes or no")
+    #if yes player 3rd card
+    if newhit =="yes":
+        myrandom = randrange(0, 51)
+        mycard4 = cardlist[myrandom]
+        print(mycard4.type, mycard4.suit, mycard4.value)
+        playertotal = mycard2.value + mycard3.value + mycard4.value
+        #new player total points
+        print("your total points = ", playertotal)
+        #check for over 21
+        if playertotal>21:
+            print("Player score over 21 the game is over and the dealer has won")
+            return
+    #if no dealer 2nd card
+    if newhit == "no":
+        myrandom = randrange(0, 51)
+        mycard5 = cardlist[myrandom]
+        print("Dealer second card is ", mycard5.type, mycard5.suit, mycard5.value)
+        dealertotal = mycard1.value + mycard5.value
+        #new dealer total points
+        print("dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 3rd card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard8 = cardlist[myrandom]
+            print("Dealer third card is ", mycard8.type, mycard8.suit, mycard8.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value
+            print("Dealer total points =", dealertotal)
+            # if less than 17 points dealer hits 4th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard9 = cardlist[myrandom]
+            print("Dealer fourth card is ", mycard9.type, mycard9.suit, mycard9.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 5th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard10 = cardlist[myrandom]
+            print("Dealer fifth card is ", mycard10.type, mycard10.suit, mycard10.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 6th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard11 = cardlist[myrandom]
+            print("Dealer sixth card is ", mycard11.type, mycard11.suit, mycard11.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits max hits 7th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard12 = cardlist[myrandom]
+            print("Dealer seventh card is ", mycard12.type, mycard12.suit, mycard12.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value + mycard12.value
+            print("Dealer total points =", dealertotal)
+        #decide who won
+        if dealertotal>21:
+            print("dealer is over 21 player has won")
+            return
+        if dealertotal>= playertotal:
+            print("dealer has won")
+            return
+        if playertotal>dealertotal:
+            print("player has won")
+            return
+
+
+    #another hit?
+    newhit= input("Do you want a hit? yes or no")
+    #if yes player 4th card
+    if newhit =="yes":
+        myrandom = randrange(0, 51)
+        mycard6 = cardlist[myrandom]
+        print(mycard6.type, mycard6.suit, mycard6.value)
+        playertotal = mycard2.value + mycard3.value + mycard4.value + mycard6.value
+        #player total
+        print("your total point = ", playertotal)
+        #check for over 21
+        if playertotal>21:
+            print("The game is over and the dealer has won")
+            return
+    #if no dealer 2nd card
+    if newhit == "no":
+        myrandom = randrange(0, 51)
+        mycard5 = cardlist[myrandom]
+        print("Dealer second card is ", mycard5.type, mycard5.suit, mycard5.value)
+        dealertotal = mycard1.value + mycard5.value
+        #display points
+        print("Dealer total points =", dealertotal)
+        #if less than 17 points dealer hits 3rd card
+        if dealertotal<=16:
+            myrandom = randrange(0, 51)
+            mycard8 = cardlist[myrandom]
+            print("Dealer third card is ", mycard8.type, mycard8.suit, mycard8.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value
+            print("Dealer total points =", dealertotal)
+        #if less than 17 points dealer hits 4th card
+        if dealertotal<=16:
+            myrandom = randrange(0, 51)
+            mycard9 = cardlist[myrandom]
+            print("Dealer fourth card is ", mycard9.type, mycard9.suit, mycard9.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value
+            print("Dealer total points =", dealertotal)
+        #if less than 17 points dealer hits 5th card
+        if dealertotal<=16:
+            myrandom = randrange(0, 51)
+            mycard10 = cardlist[myrandom]
+            print("Dealer fifth card is ", mycard10.type, mycard10.suit, mycard10.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value
+            print("Dealer total points =", dealertotal)
+        #if less than 17 points dealer hits 6th card
+        if dealertotal<=16:
+            myrandom = randrange(0, 51)
+            mycard11 = cardlist[myrandom]
+            print("Dealer sixth card is ", mycard11.type, mycard11.suit, mycard11.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value
+            print("Dealer total points =", dealertotal)
+        #if less than 17 points dealer hits max hits 7th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard12 = cardlist[myrandom]
+            print("Dealer seventh card is ", mycard12.type, mycard12.suit, mycard12.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value + mycard12.value
+            print("Dealer total points =", dealertotal)
+        if dealertotal>21:
+            print("dealer is over 21 player has won")
+            return
+        if dealertotal>= playertotal:
+            print("dealer has won")
+            return
+        if playertotal>dealertotal:
+            print("player has won")
+            return
+
+
+    newhit= input("Do you want a hit? yes or no")
+    #another hit?
+    if newhit =="yes":
+        #Player 5th card
+        myrandom = randrange(0, 51)
+        mycard7 = cardlist[myrandom]
+        print(mycard7.type, mycard7.suit, mycard7.value)
+        #player total
+        playertotal = mycard2.value + mycard3.value + mycard4.value + mycard6.value + mycard7.value
+        print("Your total points are = ", playertotal)
+        if playertotal>21:
+            print("The game is over and the dealer has won")
+            return
+
+    #if no dealer 2nd card
+    if newhit == "no":
+        myrandom = randrange(0, 51)
+        mycard5 = cardlist[myrandom]
+        print("Dealer second card is ", mycard5.type, mycard5.suit, mycard5.value)
+        #dealer total points
+        dealertotal = mycard1.value + mycard5.value
+        print("dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 3rd card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard8 = cardlist[myrandom]
+            print("Dealer third card is ", mycard8.type, mycard8.suit, mycard8.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 4th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard9 = cardlist[myrandom]
+            print("Dealer fourth card is ", mycard9.type, mycard9.suit, mycard9.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 5th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard10 = cardlist[myrandom]
+            print("Dealer fifth card is ", mycard10.type, mycard10.suit, mycard10.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 6th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard11 = cardlist[myrandom]
+            print("Dealer sixth card is ", mycard11.type, mycard11.suit, mycard11.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value
+            print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits max hits 7th card
+        if dealertotal <= 16:
+            myrandom = randrange(0, 51)
+            mycard12 = cardlist[myrandom]
+            print("Dealer seventh card is ", mycard12.type, mycard12.suit, mycard12.value)
+            dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value + mycard12.value
+            print("Dealer total points =", dealertotal)
+        if dealertotal>21:
+            print("dealer is over 21 player has won")
+            return
+        if dealertotal>= playertotal:
+            print("dealer has won")
+            return
+        if playertotal>dealertotal:
+            print("player has won")
+            return
+
+    #maximum hits reached
+    #dealer 2nd card
+    myrandom = randrange(0, 51)
+    mycard5 = cardlist[myrandom]
+    print("Dealer second card is ", mycard5.type, mycard5.suit, mycard5.value)
+    #dealer total points
+    dealertotal = mycard1.value + mycard5.value
+    print("dealer total points =", dealertotal)
+    # if less than 17 points dealer hits 3rd card
+    if dealertotal <= 16:
+        myrandom = randrange(0, 51)
+        mycard8 = cardlist[myrandom]
+        print("Dealer third card is ", mycard8.type, mycard8.suit, mycard8.value)
+        dealertotal = mycard1.value + mycard5.value + mycard8.value
+        print("Dealer total points =", dealertotal)
+        # if less than 17 points dealer hits 4th card
+    if dealertotal <= 16:
+        myrandom = randrange(0, 51)
+        mycard9 = cardlist[myrandom]
+        print("Dealer fourth card is ", mycard9.type, mycard9.suit, mycard9.value)
+        dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value
+        print("Dealer total points =", dealertotal)
+    # if less than 17 points dealer hits 5th card
+    if dealertotal <= 16:
+        myrandom = randrange(0, 51)
+        mycard10 = cardlist[myrandom]
+        print("Dealer fifth card is ", mycard10.type, mycard10.suit, mycard10.value)
+        dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value
+        print("Dealer total points =", dealertotal)
+    # if less than 17 points dealer hits 6th card
+    if dealertotal <= 16:
+        myrandom = randrange(0, 51)
+        mycard11 = cardlist[myrandom]
+        print("Dealer sixth card is ", mycard11.type, mycard11.suit, mycard11.value)
+        dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value
+        print("Dealer total points =", dealertotal)
+    # if less than 17 points dealer hits max hits 7th card
+    if dealertotal <= 16:
+        myrandom = randrange(0, 51)
+        mycard12 = cardlist[myrandom]
+        print("Dealer seventh card is ", mycard12.type, mycard12.suit, mycard12.value)
+        dealertotal = mycard1.value + mycard5.value + mycard8.value + mycard9.value + mycard10.value + mycard11.value + mycard12.value
+        print("Dealer total points =", dealertotal)
+    #decide who won
+    if dealertotal > 21:
+        print("dealer is over 21 player has won")
+        return
+    if dealertotal >= playertotal:
+        print("dealer has won")
+        return
+    if playertotal > dealertotal:
+        print("player has won")
+        return
+
+
+if __name__=="__main__":
+    blackjack()
